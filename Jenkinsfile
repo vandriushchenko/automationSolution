@@ -1,9 +1,6 @@
 pipeline {
     agent { label 'selenium' }
-        tools {
-            maven 'maven 3.5.4'
-            jdk 'jdk 11.0.1'
-        }
+
 
     stages {
       stage('Integration Tests') {
