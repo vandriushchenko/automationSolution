@@ -1,7 +1,4 @@
 pipeline {
-    agent { label 'selenium' }
-
-
     stages {
       stage('Integration Tests') {
         steps {
