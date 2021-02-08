@@ -1,26 +1,15 @@
 pipeline {
-    agent {
-        kubernetes {
-            yaml """
-kind: Pod
-spec:
-  containers:
- - name: maven
-    image: maven:3.5.3-jdk-8
-    imagePullPolicy: Always
-    command: [cat]
-    tty: true
-    securityContext:
-        runAsUser: 1000
-"""
+    agent { label 'selenium' }
+        tools {
+            maven 'maven 3.5.4'
+            jdk 'jdk 11.0.1'
         }
-    }
 
     stages {
       stage('Integration Tests') {
         steps {
           container('maven') {
-            sh 'mvn test'
+            sh 'mvn clean test'
           }
         }
         post {
